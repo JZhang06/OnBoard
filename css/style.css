@@ -323,6 +323,32 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
+  #f1a{
+    position: absolute;
+    width: 307px;
+    height: 44px;
+    left: 47px;
+    top: 160px;
+
+    background: #FFFFFF;
+    border: 1px solid #ACAF18;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  #f1:focus{
+    position: absolute;
+    width: 307px;
+    height: 44px;
+    left: 47px;
+    top: 160px;
+
+    background: #FFFFFF;
+    border: 1px solid #ACAF18;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
   #f2{
     position: absolute;
     width: 80px;
@@ -337,6 +363,34 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
+  #f2a{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 162px;
+    top: 230px;
+    border-radius: 50%;
+
+    background: #FFFFFF;
+    border: 1px solid #ACAF18;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  #f2:focus{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 162px;
+    top: 230px;
+    border-radius: 50%;
+
+    background: #FFFFFF;
+    border: 1px solid #ACAF18;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
   #f3{
     position: absolute;
     width: 80px;
@@ -347,6 +401,34 @@ body {
 
     background: #FFFFFF;
     border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  #f3a{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 162px;
+    top: 330px;
+    border-radius: 50%;
+
+    background: #FFFFFF;
+    border: 1px solid #ACAF18;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  #f3:focus{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 162px;
+    top: 330px;
+    border-radius: 50%;
+
+    background: #FFFFFF;
+    border: 1px solid #ACAF18;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
