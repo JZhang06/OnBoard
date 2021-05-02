@@ -1,96 +1,54 @@
-let todoItems = [];
+// Create a "close" button and append it to each list item
+const nodeList = document.getElementsByTagName("LI");
+let i = 0;
+for (i of nodeList.length) {
+    let span = document.createElement("SPAN");
+    let txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    nodeList[i].appendChild(span);
+}
 
-function renderTodo(todo) {
-    localStorage.setItem('todoItems', JSON.stringify(todoItems));
-
-    const list = document.querySelector('.js-todo-list');
-    const item = document.querySelector(`[data-key='${todo.id}']`);
-
-    if (todo.deleted) {
-        item.remove();
-        if (todoItems.length === 0) list.innerHTML = '';
-        return
+// Click on a close button to hide the current list item
+const close = document.getElementsByClassName("close");
+for (i of close.length) {
+    close[i].onclick = function() {
+        let div = this.parentElement;
+        div.style.display = "none";
     }
+}
 
-    const isChecked = todo.checked ? 'done' : '';
-    const node = document.createElement("li");
-    node.setAttribute('class', `todo-item ${isChecked}`);
-    node.setAttribute('data-key', todo.id);
-    node.innerHTML = `
-    <input id="${todo.id}" type="checkbox"/>
-    <label for="${todo.id}" class="tick js-tick"></label>
-    <span>${todo.text}</span>
-    <button class="delete-todo js-delete-todo">
-    <svg><use href="#delete-icon"></use></svg>
-    </button>
-  `;
+// Add a "checked" symbol when clicking on a list item
+let list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+    if (ev.target.tagName === 'LI') {
+        ev.target.classList.toggle('checked');
+    }
+}, false);
 
-    if (item) {
-        list.replaceChild(node, item);
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+    let li = document.createElement("li");
+    let inputValue = document.getElementById("myInput").value;
+    let t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '') {
+        alert("You must write something!");
     } else {
-        list.append(node);
+        document.getElementById("myUL").appendChild(li);
+    }
+    document.getElementById("myInput").value = "";
+
+    let span = document.createElement("SPAN");
+    let txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+
+    for (i of close.length) {
+        close[i].onclick = function() {
+            let div = this.parentElement;
+            div.style.display = "none";
+        }
     }
 }
-
-function addTodo(text) {
-    const todo = {
-        text,
-        checked: false,
-        id: Date.now(),
-    };
-
-    todoItems.push(todo);
-    renderTodo(todo);
-}
-
-function toggleDone(key) {
-    const index = todoItems.findIndex(item => item.id === Number(key));
-    todoItems[index].checked = !todoItems[index].checked;
-    renderTodo(todoItems[index]);
-}
-
-function deleteTodo(key) {
-    const index = todoItems.findIndex(item => item.id === Number(key));
-    const todo = {
-        deleted: true,
-        ...todoItems[index]
-    };
-    todoItems = todoItems.filter(item => item.id !== Number(key));
-    renderTodo(todo);
-}
-
-const form = document.querySelector('.js-form');
-form.addEventListener('submit', event => {
-    event.preventDefault();
-    const input = document.querySelector('.js-todo-input');
-
-    const text = input.value.trim();
-    if (text !== '') {
-        addTodo(text);
-        input.value = '';
-        input.focus();
-    }
-});
-
-const list = document.querySelector('.js-todo-list');
-list.addEventListener('click', event => {
-    if (event.target.classList.contains('js-tick')) {
-        const itemKey = event.target.parentElement.dataset.key;
-        toggleDone(itemKey);
-    }
-
-    if (event.target.classList.contains('js-delete-todo')) {
-        const itemKey = event.target.parentElement.dataset.key;
-        deleteTodo(itemKey);
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const ref = localStorage.getItem('todoItems');
-    if (ref) {
-        todoItems = JSON.parse(ref);
-        todoItems.forEach(t => {
-            renderTodo(t);
-        });
-    }
-});
